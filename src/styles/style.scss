@@ -1,6 +1,9 @@
 body{
     background-color: green;
 }
+#title{
+    text-align: center;
+}
 .grid-container {
     display: grid;
     background-color: red;
@@ -13,29 +16,34 @@ body{
 }
 .grid-item:nth-child(1){
     //player1
-    grid-column: 2;
+    grid-column: 2/span 2 ;
     grid-row: 1;
 }
 .grid-item:nth-child(2){
-    //deck
-    grid-column: 2;
+    //player2
+    grid-column: 4;
     grid-row: 2;
+    
 }
 .grid-item:nth-child(3){
+    //player3
+    grid-column: 2/ span 2 ;
+    grid-row: 3;
+}
+.grid-item:nth-child(4){
     //player4
     grid-column: 1;
     grid-row: 2;
 }
-.grid-item:nth-child(4){
-    //player2
-    grid-column: 3;
+.grid-item:nth-child(5){
+    //deck
+    grid-column: 2;
     grid-row: 2;
 }
-
-.grid-item:nth-child(5){
-    //player3
-    grid-column: 2;
-    grid-row: 3;
+.grid-item:nth-child(6){
+    //pile
+    grid-column: 3;
+    grid-row: 2;
 }
     
     

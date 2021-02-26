@@ -1,9 +1,15 @@
 class Card{
     constructor(suit,rank,isJoker=false){
-        this.suit=suit;
-        this.rank=rank;
         this.isJoker=isJoker;
         this.face="up";
+        if(isJoker===false){
+            this.suit=suit;
+            this.rank=rank;
+        }
+        else {
+            this.suit="Joker";
+            this.rank="Joker";
+        }
     }
 
     flip(face){
@@ -11,10 +17,24 @@ class Card{
             this.face=face;
     }
 
+    static generate(){
+        const suits=["Spades","Clubs","Hearts","Diamonds"];
+        const ranks=["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"];
+        let suit= Math.floor(Math.random()*4);
+        let rank=Math.floor(Math.random()*13);
+        return new Card(suits[suit],ranks[rank]);
+    }
+
+    toString(){
+        if(this.isJoker===false)
+            return this.rank+" Of "+this.suit
+        else
+            return this.rank;
+    }
 }
 
 class Deck{
-    constructor(cards){
+    constructor(cards=[]){
         this.cards=cards;
     }
     addCard(card){
@@ -28,10 +48,48 @@ class Deck{
         }
         this.cards=afterRemove;
     }
+    show(){
+        if(this.cards.length===0){
+            console.log("the deck is empty");
+            return;
+        }
+        for(let card of this.cards){
+            console.log(card.toString())
+        }
+    }
 }
 
-let d=new Deck([new Card(1,2,true),new Card(1,3,false)]);
-d.addCard(new Card(1,5,false));
-d.removeCard(5);
-d.cards[1].flip("down");
-console.log(d);
+class TableDeck extends Deck{
+    
+    fill() {
+        let cardsArr=[];
+        const suits=["Spades","Clubs","Hearts","Diamonds"];
+        const ranks=["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"];
+        for(let suit of suits){
+            for(let rank of ranks){
+                cardsArr.push(new Card(suit,rank))
+            }
+        }
+        cardsArr.push(new Card(1,1,true));
+        cardsArr.push(new Card(1,1,true));
+        this.cards=cardsArr;
+    }
+    mix(){
+        let checkArr=[];
+        let finalArr=[];
+        let index=0;
+        while(finalArr.length<54){
+            index=Math.floor(Math.random()*54);
+            if(checkArr[index]===undefined){
+                finalArr.push(this.cards[index]);
+                checkArr[index]=true;
+            }
+        }
+        this.cards=finalArr;
+    }
+}
+
+let d=new TableDeck();
+d.fill();
+d.mix();
+d.show();
