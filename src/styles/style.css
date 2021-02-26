@@ -1,0 +1,19 @@
+body {
+  background-color: green;
+}
+
+.grid-container {
+  display: -ms-grid;
+  display: grid;
+  background-color: red;
+  grid-gap: 50px 100px;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+}
+
+.grid-item {
+  border-style: solid;
+  padding: 20px;
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */
