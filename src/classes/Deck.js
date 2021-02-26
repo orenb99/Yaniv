@@ -1,7 +1,7 @@
 class Card{
     constructor(suit,rank,isJoker=false){
         this.isJoker=isJoker;
-        this.face="up";
+        this.face="down";
         if(isJoker===false){
             this.suit=suit;
             this.rank=rank;
@@ -89,7 +89,15 @@ class TableDeck extends Deck{
     }
 }
 
-let d=new TableDeck();
-d.fill();
-d.mix();
-d.show();
+class PileDeck extends Deck{
+    addCard(card){
+        card.flip("up");
+        super.addCard(card);
+    }
+}
+class PlayerDeck extends Deck{
+}
+// let d=new TableDeck();
+// d.fill();
+// d.mix();
+// d.show();

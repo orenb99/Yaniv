@@ -6,7 +6,6 @@ body{
 }
 .grid-container {
     display: grid;
-    background-color: red;
     grid-gap: 50px 100px;
 }
 .grid-item {
@@ -45,5 +44,19 @@ body{
     grid-column: 3;
     grid-row: 2;
 }
-    
-    
+
+.down > img {
+    width: 150px;
+    height: 220px;
+    //position: absolute;
+  }
+
+.card.up{
+    position: relative;
+    background-color: white;
+    width:150px;
+    height:220px;
+}
+.card{
+    align-items: center;
+}
