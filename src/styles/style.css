@@ -83,4 +83,20 @@ span.title > * {
       -ms-flex-align: center;
           align-items: center;
 }
+
+#player1-div > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#player3-div > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.player-deck > * {
+  margin: 20px;
+}
 /*# sourceMappingURL=style.css.map */

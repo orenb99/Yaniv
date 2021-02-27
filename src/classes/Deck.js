@@ -96,4 +96,13 @@ class PileDeck extends Deck{
     }
 }
 class PlayerDeck extends Deck{
+    addCard(card){
+        card.flip("up");
+        super.addCard(card);
+    }
+
+    flipAll(stance){
+        for(let card of this.cards)
+            card.flip(stance);
+    }
 }

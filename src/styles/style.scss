@@ -51,7 +51,6 @@ span.title>*{
 .down > img {
     width: 150px;
     height: 220px;
-    //position: absolute;
   }
 
 .card.up{
@@ -62,4 +61,13 @@ span.title>*{
 }
 .card{
     align-items: center;
+}
+#player1-div>span{
+    display: flex;
+}
+#player3-div>span{
+    display: flex;
+}
+.player-deck>*{
+    margin: 20px;
 }

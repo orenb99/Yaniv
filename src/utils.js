@@ -1,12 +1,13 @@
-function turnChange(currentTurn=Math.floor(Math.random()*4+1)) {
+function changeTurn(currentTurn=Math.floor(Math.random()*4+1)) {
     if(currentTurn>4||currentTurn<1)
         return;
     if(currentTurn===4)
-        return 1;
-    else{
+        currentTurn= 1;
+    else
         currentTurn++;
-        return currentTurn;
-    }
+
+    return currentTurn;
+    
 }
 
 function createCard(card) {
@@ -33,7 +34,8 @@ function appendDeck(deck,element) {
         return;
     for(let card of deck.cards){
         let newCard=createCard(card);
-        newCard.hidden=true;
+        if(element.classList[0]!=="player-deck")
+            newCard.hidden=true;
         element.append(newCard);
     }
     if(element.parentNode.id==="table-div")
