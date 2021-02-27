@@ -51,3 +51,19 @@ function moveCard(fromDeck,toDeck,card) {
     fromDeck.removeCard(fromDeck.cards.indexOf(card));
 }
 
+function addSelectListener(decks,divs) {
+    for(let i=0;i<4;i++){
+    divs[i].addEventListener("click",(event)=>{
+    let target=event.target;
+    if(target.classList[0]==="card"){
+        let childrenArr=[];
+        for(let child of divs[i].children){
+            childrenArr.push(child);
+        }
+        let index=childrenArr.indexOf(target);
+        target.classList.toggle("selected");
+        decks[i].selectCard(decks[i].cards[index]);
+    }
+})
+}
+}

@@ -18,6 +18,9 @@ const player2Deck=new PlayerDeck();
 const player3Deck=new PlayerDeck();
 const player4Deck=new PlayerDeck();
 
+const playerDivArray=[player1,player2,player3,player4];
+const playerDecksArray=[player1Deck,player2Deck,player3Deck,player4Deck];
+
     //event listeners
 tableSpan.addEventListener("click",()=>{
     moveCard(tableDeck,pileDeck,tableDeck.cards[0]);
@@ -26,18 +29,9 @@ tableSpan.addEventListener("click",()=>{
     counterElement.innerText=changeTurn(parseInt(counterElement.innerText));
     updateByTurn();
 })
-player1.addEventListener("click",(event)=>{
-    let target=event.target;
-    if(target.classList[0]==="card"){
-        let childrenArr=[];
-        for(let child of player1.children){
-            childrenArr.push(child);
-        }
-        let index=childrenArr.indexOf(target);
-        player1Deck.selectCard(player1Deck.cards[index]);
-    }
-    console.log(player1Deck.selectedCards);
-})
+
+
+
 
     //main functions
 function appendAll() {
@@ -86,6 +80,7 @@ function updateByTurn() {
             updateByTurn();
         },i*70);
     }
+    addSelectListener(playerDecksArray,playerDivArray)
     
 }
 

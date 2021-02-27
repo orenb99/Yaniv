@@ -118,4 +118,9 @@ span.title > * {
   font-size: 3em;
   border-radius: 50%;
 }
+
+.card.selected {
+  border-style: solid;
+  border-width: 3px;
+}
 /*# sourceMappingURL=style.css.map */
