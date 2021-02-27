@@ -1,3 +1,14 @@
+function turnChange(currentTurn=Math.floor(Math.random()*4+1)) {
+    if(currentTurn>4||currentTurn<1)
+        return;
+    if(currentTurn===4)
+        return 1;
+    else{
+        currentTurn++;
+        return currentTurn;
+    }
+}
+
 function createCard(card) {
     const cardDiv=document.createElement("div");
     cardDiv.classList.add("card",card.face,card.suit);
@@ -16,11 +27,11 @@ function createTableDeck() {
     deck.mix();
     return deck;
 }
-function appendDeck(tableObj,element) {
-    if(tableObj.cards.length===0)
-        return;
+function appendDeck(deck,element) {
     element.innerHTML="";
-    for(let card of tableObj.cards){
+    if(deck.cards.length===0)
+        return;
+    for(let card of deck.cards){
         let newCard=createCard(card);
         newCard.hidden=true;
         element.append(newCard);

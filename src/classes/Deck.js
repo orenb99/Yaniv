@@ -97,7 +97,3 @@ class PileDeck extends Deck{
 }
 class PlayerDeck extends Deck{
 }
-// let d=new TableDeck();
-// d.fill();
-// d.mix();
-// d.show();

@@ -2,8 +2,12 @@ body {
   background-color: green;
 }
 
-#title {
+.title {
   text-align: center;
+}
+
+span.title > * {
+  display: inline-block;
 }
 
 .grid-container {
