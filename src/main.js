@@ -1,3 +1,4 @@
+
     //elements
 const title=document.getElementById("title");
 const counterElement= document.getElementById("turn-counter");
@@ -24,6 +25,18 @@ tableSpan.addEventListener("click",()=>{
     appendDeck(tableDeck,tableSpan)
     counterElement.innerText=changeTurn(parseInt(counterElement.innerText));
     updateByTurn();
+})
+player1.addEventListener("click",(event)=>{
+    let target=event.target;
+    if(target.classList[0]==="card"){
+        let childrenArr=[];
+        for(let child of player1.children){
+            childrenArr.push(child);
+        }
+        let index=childrenArr.indexOf(target);
+        player1Deck.selectCard(player1Deck.cards[index]);
+    }
+    console.log(player1Deck.selectedCards);
 })
 
     //main functions

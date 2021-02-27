@@ -12,13 +12,12 @@ function changeTurn(currentTurn=Math.floor(Math.random()*4+1)) {
 
 function createCard(card) {
     const cardDiv=document.createElement("div");
-    cardDiv.classList.add("card",card.face,card.suit);
     if(card.face==="up")
         cardDiv.innerHTML=(`<h3>${card.toString()}</h3>`);
     else{
         cardDiv.innerHTML=(`<img src="./imgs/card-back.png"></img>`);
     }
-        
+    cardDiv.classList.add("card",card.face,card.suit);    
     return cardDiv;
 }
 
@@ -51,3 +50,4 @@ function moveCard(fromDeck,toDeck,card) {
     toDeck.addCard(card);
     fromDeck.removeCard(fromDeck.cards.indexOf(card));
 }
+
