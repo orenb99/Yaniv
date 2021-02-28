@@ -2,30 +2,52 @@
     //elements
 const title=document.getElementById("title");
 const counterElement= document.getElementById("turn-counter");
-const player1=document.getElementById("player1-div").getElementsByTagName("span")[0];;
-const player2=document.getElementById("player2-div").getElementsByTagName("span")[0];;
-const player3=document.getElementById("player3-div").getElementsByTagName("span")[0];;
-const player4=document.getElementById("player4-div").getElementsByTagName("span")[0];;
+const player1Div=document.getElementById("player1-div").getElementsByTagName("span")[0];;
+const player2Div=document.getElementById("player2-div").getElementsByTagName("span")[0];;
+const player3Div=document.getElementById("player3-div").getElementsByTagName("span")[0];;
+const player4Div=document.getElementById("player4-div").getElementsByTagName("span")[0];;
 const tableSpan=document.getElementById("table-div").getElementsByTagName("span")[0];
 const pileSpan=document.getElementById("pile-div").getElementsByTagName("span")[0];
 
     //objects and variables
-counterElement.innerText=changeTurn();
-const tableDeck=createTableDeck();
-const pileDeck=new PileDeck();
-const player1Deck=new PlayerDeck();
-const player2Deck=new PlayerDeck();
-const player3Deck=new PlayerDeck();
-const player4Deck=new PlayerDeck();
 
-const playerDivArray=[player1,player2,player3,player4];
-const playerDecksArray=[player1Deck,player2Deck,player3Deck,player4Deck];
+const gameObj={
+    table:{
+        deck:createTableDeck(),
+        element:tableSpan
+    },
+    pile:{
+        deck:new PileDeck(),
+        element:pileSpan
+    },
+    playerArray:
+    [   
+        {
+            deck:new PlayerDeck(),
+            element:player1Div, 
+        },
+        {
+            deck:new PlayerDeck(),
+            element:player2Div, 
+        },
+        {
+            deck:new PlayerDeck(),
+            element:player3Div, 
+        },
+        {
+            deck:new PlayerDeck(),
+            element:player4Div, 
+        },
+    ],
+};
+counterElement.innerText=changeTurn();
+
 
     //event listeners
 tableSpan.addEventListener("click",()=>{
-    moveCard(tableDeck,pileDeck,tableDeck.cards[0]);
-    appendDeck(pileDeck,pileSpan)
-    appendDeck(tableDeck,tableSpan)
+    moveCard(gameObj.table.deck,gameObj.pile.deck,gameObj.table.deck.cards[0]);
+    appendDeck(gameObj.pile.deck,gameObj.pile.element)
+    appendDeck(gameObj.table.deck,gameObj.table.element)
     counterElement.innerText=changeTurn(parseInt(counterElement.innerText));
     updateByTurn();
 })
@@ -35,52 +57,54 @@ tableSpan.addEventListener("click",()=>{
 
     //main functions
 function appendAll() {
-    appendDeck(pileDeck,pileSpan);
-    appendDeck(tableDeck,tableSpan);
-    appendDeck(player1Deck,player1);
-    appendDeck(player2Deck,player2);
-    appendDeck(player3Deck,player3);
-    appendDeck(player4Deck,player4);
+    for(let prop in gameObj){
+        let item=gameObj[prop];
+        if(prop==="playerArray"){
+            for(let player of item)
+                appendDeck(player);
+        }   
+        else
+            appendDeck(item);
+    }
 }
 
 function updateByTurn() {
     let counter=parseInt(counterElement.innerText);
-    let playersArr=[player1Deck,player2Deck,player3Deck,player4Deck];
+    let playersArr=gameObj.playerArray;
     for(let i=0;i<4;i++){
         if(counter-1===i)
-            playersArr[i].flipAll("up");
+            playersArr[i].deck.flipAll("up");
         else
-            playersArr[i].flipAll("down");
+            playersArr[i].deck.flipAll("down");
     }
     appendAll();
 }
 
  function startGame() {
-    appendDeck(pileDeck,pileSpan);
-    appendDeck(tableDeck,tableSpan);
+    appendAll();
     for(let i=0;i<20;i++){
          setTimeout(()=>{
             if(i<5){
-                moveCard(tableDeck,player1Deck,tableDeck.cards[0])
-                appendDeck(player1Deck,player1);
+                moveCard(gameObj.table.deck, gameObj.playerArray[0].deck, gameObj.table.deck.cards[0])
+                appendDeck(gameObj.playerArray[0]);
             }
             else if(i<10&&i>4){
-                moveCard(tableDeck,player2Deck,tableDeck.cards[0])
-                appendDeck(player2Deck,player2);
+                moveCard(gameObj.table.deck, gameObj.playerArray[1].deck, gameObj.table.deck.cards[0])
+               appendDeck(gameObj.playerArray[1]);
             
             }
             else if(i<15&&i>9){
-                moveCard(tableDeck,player3Deck,tableDeck.cards[0])
-                appendDeck(player3Deck,player3);
+                moveCard(gameObj.table.deck, gameObj.playerArray[2].deck, gameObj.table.deck.cards[0])
+                appendDeck(gameObj.playerArray[2]);
             }
             else if(i<20&&i>14){
-                moveCard(tableDeck,player4Deck,tableDeck.cards[0])
-                appendDeck(player4Deck,player4);
+                moveCard(gameObj.table.deck, gameObj.playerArray[3].deck, gameObj.table.deck.cards[0])
+                appendDeck(gameObj.playerArray[3]);
             }
             updateByTurn();
         },i*70);
     }
-    addSelectListener(playerDecksArray,playerDivArray)
+    addSelectListener(gameObj)
     
 }
 

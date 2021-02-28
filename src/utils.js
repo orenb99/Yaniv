@@ -27,21 +27,21 @@ function createTableDeck() {
     deck.mix();
     return deck;
 }
-function appendDeck(deck,element) {
-    element.innerHTML="";
-    if(deck.cards.length===0)
+function appendDeck(item) {
+    item.element.innerHTML="";
+    if(item.deck.cards.length===0)
         return;
-    for(let card of deck.cards){
+    for(let card of item.deck.cards){
         let newCard=createCard(card);
-        if(element.classList[0]!=="player-deck")
+        if(item.element.classList[0]!=="player-deck")
             newCard.hidden=true;
-        element.append(newCard);
+        item.element.append(newCard);
     }
-    if(element.parentNode.id==="table-div")
-        element.firstChild.hidden=false;
+    if(item.element.parentNode.id==="table-div")
+        item.element.firstChild.hidden=false;
 
-    else if(element.parentNode.id==="pile-div")
-        element.lastChild.hidden=false;
+    else if(item.element.parentNode.id==="pile-div")
+        item.element.lastChild.hidden=false;
 }
 
 function moveCard(fromDeck,toDeck,card) {
@@ -51,18 +51,18 @@ function moveCard(fromDeck,toDeck,card) {
     fromDeck.removeCard(fromDeck.cards.indexOf(card));
 }
 
-function addSelectListener(decks,divs) {
+function addSelectListener(gameObj) {
     for(let i=0;i<4;i++){
-    divs[i].addEventListener("click",(event)=>{
+    gameObj.playerArray[i].element.addEventListener("click",(event)=>{
     let target=event.target;
     if(target.classList[0]==="card"){
         let childrenArr=[];
-        for(let child of divs[i].children){
+        for(let child of gameObj.playerArray[i].element.children){
             childrenArr.push(child);
         }
         let index=childrenArr.indexOf(target);
         target.classList.toggle("selected");
-        decks[i].selectCard(decks[i].cards[index]);
+        gameObj.playerArray[i].deck.selectCard(gameObj.playerArray[i].deck.cards[index]);
     }
 })
 }
