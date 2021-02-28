@@ -61,7 +61,11 @@ class Deck{
 }
 
 class TableDeck extends Deck{
-    
+     constructor() {
+        super();
+        this.fill();
+        this.mix();
+    }
     fill() {
         let cardsArr=[];
         const suits=["Spades","Clubs","Hearts","Diamonds"];
@@ -113,6 +117,8 @@ class PlayerDeck extends Deck{
     }
 
     selectCard(card){
+        // if(this.checkSame(card)===false)
+        //     this.selectedCards=[];
         if(!this.selectedCards.includes(card))
             this.selectedCards.push(card);
         else{
@@ -124,5 +130,13 @@ class PlayerDeck extends Deck{
             this.selectedCards=afterRemove;
         }
             
+    }
+    checkSame(card){
+        let value=card.rank;
+        for(let item of this.selectedCards){
+            if(item.rank!==value)
+                return false;
+        }
+        return true;
     }
 }

@@ -31,12 +31,7 @@ function createCard(card) {
     return cardDiv;
 }
 
-function createTableDeck() {
-    const deck=new TableDeck();
-    deck.fill();
-    deck.mix();
-    return deck;
-}
+
 function appendDeck(item) {
     item.element.innerHTML="";
     if(item.deck.cards.length===0)
@@ -62,21 +57,33 @@ function moveCard(fromDeck,toDeck,card) {
 }
 
 function addSelectListener(gameObj) {
-    for(let i=0;i<4;i++){
-        gameObj.playerArray[i].element.addEventListener("click",(event)=>{
+    for(let item of gameObj.playerArray){
+        item.element.addEventListener("click",(event)=>{
             let target=event.target;
             if(target.classList[0]==="card"){
-                let childrenArr=[];
-                for(let child of gameObj.playerArray[i].element.children){
-                    childrenArr.push(child);
-                }
+                let childrenArr=Array.from(item.element.children);
                 let index=childrenArr.indexOf(target);
-                target.classList.toggle("selected");
-                gameObj.playerArray[i].deck.selectCard(gameObj.playerArray[i].deck.cards[index]);
+                item.deck.selectCard(item.deck.cards[index]);
+                checkSelected(gameObj,gameObj.playerArray.indexOf(item))
             }
         })
     }
 }
+
+function checkSelected(gameObj,playerIndex) {
+    let player=gameObj.playerArray[playerIndex];
+    for(let card of player.deck.cards){
+        let index=player.deck.cards.indexOf(card);
+        if(player.deck.selectedCards.includes(card)){
+            player.element.children[index].classList.add("selected");
+        }
+        else{
+            player.element.children[index].classList.remove("selected")
+            }
+        }
+        console.log(player.deck.selectedCards);
+    }
+
 function startGame(gameObj,counterElement) {
     gameObj.appendAll();
     for(let i=0;i<20;i++){
@@ -86,7 +93,7 @@ function startGame(gameObj,counterElement) {
             updateByTurn(gameObj,counterElement);
         },i*70);
     }
-    addSelectListener(gameObj)
+    addSelectListener(gameObj);
     
 }
 

@@ -13,7 +13,7 @@ const pileSpan=document.getElementById("pile-div").getElementsByTagName("span")[
     //objects and variables
 const gameObj={
     table:{
-        deck:createTableDeck(),
+        deck:new TableDeck(),
         element:tableSpan
     },
     pile:{
