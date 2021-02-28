@@ -117,7 +117,7 @@ class PlayerDeck extends Deck{
     }
 
     selectCard(card){
-        if(this.checkSame(card)===false)
+        if(!this.checkSame(card))
             this.selectedCards=[];
         if(!this.selectedCards.includes(card))
             this.selectedCards.push(card);
@@ -142,4 +142,5 @@ class PlayerDeck extends Deck{
         }
         return true;
     }
+        
 }
