@@ -7,7 +7,7 @@ class Card{
             this.rank=rank;
         }
         else {
-            this.suit="Joker";
+            this.suit=suit;
             this.rank="Joker";
         }
     }
@@ -29,7 +29,7 @@ class Card{
         if(this.isJoker===false)
             return this.rank+" Of "+this.suit
         else
-            return this.rank;
+            return this.suit+" "+this.rank;
     }
 }
 
@@ -75,8 +75,8 @@ class TableDeck extends Deck{
                 cardsArr.push(new Card(suit,rank))
             }
         }
-        cardsArr.push(new Card(1,1,true));
-        cardsArr.push(new Card(1,1,true));
+        cardsArr.push(new Card("Red",1,true));
+        cardsArr.push(new Card("Black",1,true));
         this.cards=cardsArr;
     }
     mix(){
@@ -117,8 +117,8 @@ class PlayerDeck extends Deck{
     }
 
     selectCard(card){
-        // if(this.checkSame(card)===false)
-        //     this.selectedCards=[];
+        if(this.checkSame(card)===false)
+            this.selectedCards=[];
         if(!this.selectedCards.includes(card))
             this.selectedCards.push(card);
         else{
@@ -133,9 +133,12 @@ class PlayerDeck extends Deck{
     }
     checkSame(card){
         let value=card.rank;
+        if(value==="Joker")
+            return true;
         for(let item of this.selectedCards){
-            if(item.rank!==value)
+            if(item.rank!==value&&item.rank!=="Joker"){
                 return false;
+            }
         }
         return true;
     }
