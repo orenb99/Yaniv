@@ -29,7 +29,7 @@ tableSpan.addEventListener("click",()=>{
     counterElement.innerText=changeTurn(parseInt(counterElement.innerText));
     updateByTurn();
 })
-
+ 
 
 
 
