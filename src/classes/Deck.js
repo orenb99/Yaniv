@@ -17,7 +17,7 @@ class Card{
             this.face=face;
     }
 
-    static generate(){
+    static createRandomCard(){
         const suits=["Spades","Clubs","Hearts","Diamonds"];
         const ranks=["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"];
         let suit= Math.floor(Math.random()*4);
@@ -57,6 +57,7 @@ class Deck{
             console.log(card.toString())
         }
     }
+    
 }
 
 class TableDeck extends Deck{

@@ -7,7 +7,17 @@ function changeTurn(currentTurn=Math.floor(Math.random()*4+1)) {
         currentTurn++;
 
     return currentTurn;
-    
+}
+function updateByTurn(gameObj,counterElement) {
+    let counter=parseInt(counterElement.innerText);
+    let playersArr=gameObj.playerArray;
+    for(let i=0;i<4;i++){
+        if(counter-1===i)
+            playersArr[i].deck.flipAll("up");
+        else
+            playersArr[i].deck.flipAll("down");
+    }
+    gameObj.appendAll();
 }
 
 function createCard(card) {
@@ -53,17 +63,31 @@ function moveCard(fromDeck,toDeck,card) {
 
 function addSelectListener(gameObj) {
     for(let i=0;i<4;i++){
-    gameObj.playerArray[i].element.addEventListener("click",(event)=>{
-    let target=event.target;
-    if(target.classList[0]==="card"){
-        let childrenArr=[];
-        for(let child of gameObj.playerArray[i].element.children){
-            childrenArr.push(child);
-        }
-        let index=childrenArr.indexOf(target);
-        target.classList.toggle("selected");
-        gameObj.playerArray[i].deck.selectCard(gameObj.playerArray[i].deck.cards[index]);
+        gameObj.playerArray[i].element.addEventListener("click",(event)=>{
+            let target=event.target;
+            if(target.classList[0]==="card"){
+                let childrenArr=[];
+                for(let child of gameObj.playerArray[i].element.children){
+                    childrenArr.push(child);
+                }
+                let index=childrenArr.indexOf(target);
+                target.classList.toggle("selected");
+                gameObj.playerArray[i].deck.selectCard(gameObj.playerArray[i].deck.cards[index]);
+            }
+        })
     }
-})
 }
+function startGame(gameObj,counterElement) {
+    gameObj.appendAll();
+    for(let i=0;i<20;i++){
+         setTimeout(()=>{
+            moveCard(gameObj.table.deck, gameObj.playerArray[Math.floor((i)%4)].deck, gameObj.table.deck.cards[0])
+            appendDeck(gameObj.playerArray[Math.floor((i)%4)]);
+            updateByTurn(gameObj,counterElement);
+        },i*70);
+    }
+    addSelectListener(gameObj)
+    
 }
+
+
