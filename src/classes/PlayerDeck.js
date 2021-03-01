@@ -80,4 +80,13 @@ class PlayerDeck extends Deck{
         }
         return true;
     }
+
+    pass(pile){
+        let temp=this.cards.filter((value,index,arr)=>!this.selectedCards.includes(value))
+        this.cards=temp;
+        let afterPass=pile.deck.cards.concat(this.selectedCards);
+        pile.deck.cards=afterPass;
+        this.selectedCards=[];
+    }
+
 }

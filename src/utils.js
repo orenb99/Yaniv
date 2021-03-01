@@ -58,16 +58,17 @@ function moveCard(fromDeck,toDeck,card) {
 
 function addSelectListener(gameObj) {
     for(let item of gameObj.playerArray){
-        item.element.addEventListener("click",(event)=>{
-            let target=event.target;
-            if(target.classList[0]==="card"){
-                let childrenArr=Array.from(item.element.children);
-                let index=childrenArr.indexOf(target);
-                item.deck.selectCard(item.deck.cards[index]);
-                checkSelected(gameObj,gameObj.playerArray.indexOf(item))
-            }
-        })
+        item.element.addEventListener("click",select)
     }
+}
+function select(event) {
+    let target=event.target;
+    if(target.classList[0]==="card"){
+        let childrenArr=Array.from(item.element.children);
+        let index=childrenArr.indexOf(target);
+        item.deck.selectCard(item.deck.cards[index]);
+        checkSelected(gameObj,gameObj.playerArray.indexOf(item))
+}
 }
 
 function checkSelected(gameObj,playerIndex) {
@@ -103,4 +104,10 @@ function startGame(gameObj,counterElement) {
     addSelectListener(gameObj);
 }
 
+function stopGame(gameObj) {
+    gameObj.playerArray.forEach((value) => {
+        value.deck.flipAll("up");
+    });
+    gameObj.appendAll();
+}
 

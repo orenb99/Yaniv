@@ -1,6 +1,7 @@
 
-function main(params) {
-//elements
+function main() {
+
+    //elements
 const title=document.getElementById("title");
 const counterElement= document.getElementById("turn-counter");
 const player1Span=document.getElementById("player1-div").getElementsByTagName("span")[0];
@@ -9,6 +10,7 @@ const player3Span=document.getElementById("player3-div").getElementsByTagName("s
 const player4Span=document.getElementById("player4-div").getElementsByTagName("span")[0];
 const tableSpan=document.getElementById("table-div").getElementsByTagName("span")[0];
 const pileSpan=document.getElementById("pile-div").getElementsByTagName("span")[0];
+const yanivButton=document.getElementById("yaniv-button");
 
     //objects and variables
 const gameObj={
@@ -51,15 +53,36 @@ const gameObj={
         }
     }
 };
-counterElement.innerText=changeTurn();
 
+counterElement.innerText=changeTurn();
+let currentPlayer=gameObj.playerArray[Number(counterElement.innerText)-1];
 
     //event listeners
-tableSpan.addEventListener("click",()=>{
-    moveCard(gameObj.table.deck,gameObj.pile.deck,gameObj.table.deck.cards[0]);
-    counterElement.innerText=changeTurn(parseInt(counterElement.innerText));
-    updateByTurn(gameObj,counterElement);
+    
+for(let i=0;i<2;i++){
+    let prop=Object.getOwnPropertyNames(gameObj)[i];
+    gameObj[prop].element.addEventListener("click",async ()=>{
+        if(currentPlayer.deck.selectedCards.length<1)
+            return;
+        let index=((i===0) ? 0 : gameObj[prop].deck.cards.length-1);
+        currentPlayer.deck.pass(gameObj.pile);
+        moveCard(gameObj[prop].deck,currentPlayer.deck,gameObj[prop].deck.cards[index]);
+        gameObj.appendAll();
+        counterElement.innerText=changeTurn(parseInt(counterElement.innerText));
+
+        await setTimeout(()=>{
+            //fix to not be able to select after passing
+            updateByTurn(gameObj,counterElement);
+            currentPlayer=gameObj.playerArray[Number(counterElement.innerText)-1];
+        },3000);
+    })
+}
+
+yanivButton.addEventListener("click",()=>{
+    stopGame(gameObj);
 })
+
+
     //calls
 startGame(gameObj,counterElement);
 
