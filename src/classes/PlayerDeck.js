@@ -21,11 +21,8 @@ class PlayerDeck extends Deck{
         if(!this.selectedCards.includes(card))
             this.selectedCards.push(card);
         else{
-            let afterRemove=[];
-            for(let i=0;i<this.selectedCards.length;i++){
-                if(this.selectedCards.indexOf(card)!==i)
-                    afterRemove.push(this.selectedCards[i]);
-            }
+            let afterRemove=this.selectedCards.filter((value,index)=>
+            index!==this.selectedCards.indexOf(card));
             this.selectedCards=afterRemove;
         }
             
