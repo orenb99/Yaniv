@@ -83,10 +83,6 @@ function checkSelected(gameObj,playerIndex) {
         }
     }
 
-function closeNumbers(card,arr) {
-    
-}
-
 
 function startGame(gameObj,counterElement) {
     gameObj.appendAll();

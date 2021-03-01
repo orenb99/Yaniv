@@ -15,8 +15,7 @@ class PlayerDeck extends Deck{
     }
 
     selectCard(card){
-        this.checkSerial(card);
-        if(!this.checkSame(card))
+        if(!this.checkSerial(card)&&!this.checkSameValue(card))
             this.selectedCards=[];
         if(!this.selectedCards.includes(card))
             this.selectedCards.push(card);
@@ -27,7 +26,7 @@ class PlayerDeck extends Deck{
         }
             
     }
-    checkSame(card){
+    checkSameValue(card){
         let value=card.rank;
         if(value==="Joker")
             return true;
@@ -41,8 +40,16 @@ class PlayerDeck extends Deck{
 
     checkSerial(card){
         let value=card.rank;
+        let suit= card.suit;
         if(value==="Joker")
             return true;
+        for(let item of this.selectedCards){
+            if(item.suit!==suit&&item.rank!=="Joker"){
+                return false;
+            }
+        }
+        return true;
+        
     }
         
 }
