@@ -95,13 +95,12 @@ function startGame(gameObj,counterElement) {
     gameObj.appendAll();
     for(let i=0;i<20;i++){
          setTimeout(()=>{
-            moveCard(gameObj.table.deck, gameObj.playerArray[0].deck, gameObj.table.deck.cards[0])
+            moveCard(gameObj.table.deck, gameObj.playerArray[Math.floor((i)%4)].deck, gameObj.table.deck.cards[0])
             appendDeck(gameObj.playerArray[Math.floor((i)%4)]);
             updateByTurn(gameObj,counterElement);
         },i*70);
     }
     addSelectListener(gameObj);
-    
 }
 
 

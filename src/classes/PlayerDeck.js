@@ -17,8 +17,13 @@ class PlayerDeck extends Deck{
     selectCard(card){
         if(!this.checkSameSuit(card)&&!this.checkSameValue(card))
             this.selectedCards=[];
-        if(!this.selectedCards.includes(card))
+        if(!this.selectedCards.includes(card)){
             this.selectedCards.push(card);
+            if(!this.checkSerial()&&this.checkSameSuit(card)){
+                this.selectedCards=[];
+                this.selectedCards.push(card);
+            }
+        }
         else{
             let afterRemove=this.selectedCards.filter((value,index)=>
             index!==this.selectedCards.indexOf(card));
@@ -64,13 +69,16 @@ class PlayerDeck extends Deck{
         selectedValues=sortValues(selectedValues);
         let serialArray=[];
         for(let i=0;i<selectedValues.length;i++){
-            if(selectedValues[i]-1===selectedValues[i-1]||serialArray.length===0)
+            if(selectedValues[i]-1===selectedValues[i-1]||serialArray.length===0){
                 serialArray.push(selectedValues[i]);
-            else
-                serialArray=[];
+            }
+            else{
+                return false;
+            }
         }
-        console.log(serialArray);
-        return serialArray.length>2;
+        return true;
     }
-        
+    changeable(){
+        console.log(this.selectedCards);
+    }    
 }
