@@ -7,11 +7,7 @@ class Deck{
         this.cards.push(card);
     }
     removeCard(index){
-        let afterRemove=[];
-        for(let i=0;i<this.cards.length;i++){
-            if(index!==i)
-                afterRemove.push(this.cards[i]);
-        }
+        let afterRemove=this.cards.filter((value,i)=>index!==i);
         this.cards=afterRemove;
     }
     show(){
