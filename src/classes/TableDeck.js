@@ -2,7 +2,7 @@ class TableDeck extends Deck{
     constructor() {
        super();
        this.fill();
-       this.mix();
+       //this.mix();
    }
    fill() {
        let cardsArr=[];

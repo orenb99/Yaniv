@@ -15,7 +15,7 @@ class PlayerDeck extends Deck{
     }
 
     selectCard(card){
-        if(!this.checkSerial(card)&&!this.checkSameValue(card))
+        if(!this.checkSameSuit(card)&&!this.checkSameValue(card))
             this.selectedCards=[];
         if(!this.selectedCards.includes(card))
             this.selectedCards.push(card);
@@ -38,7 +38,7 @@ class PlayerDeck extends Deck{
         return true;
     }
 
-    checkSerial(card){
+    checkSameSuit(card){
         let value=card.rank;
         let suit= card.suit;
         if(value==="Joker")
@@ -50,6 +50,27 @@ class PlayerDeck extends Deck{
         }
         return true;
         
+    }
+    checkValues(array){
+        const ranks=["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"];
+        let arrayValues=array.map((value,index)=>
+        value=ranks.indexOf(value.rank)+1
+        );
+        return arrayValues;
+    }
+
+    checkSerial(){
+        let selectedValues=this.checkValues(this.selectedCards);
+        selectedValues=sortValues(selectedValues);
+        let serialArray=[];
+        for(let i=0;i<selectedValues.length;i++){
+            if(selectedValues[i]-1===selectedValues[i-1]||serialArray.length===0)
+                serialArray.push(selectedValues[i]);
+            else
+                serialArray=[];
+        }
+        console.log(serialArray);
+        return serialArray.length>2;
     }
         
 }
