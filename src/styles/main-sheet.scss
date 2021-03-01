@@ -1,0 +1,57 @@
+@import "./grid";
+
+
+body{
+    background-color: green;
+}
+.title{
+    text-align: center;
+}
+span.title{
+    *{
+    display: inline-block;
+    }
+}
+.down {
+    img {
+        width: 150px;
+        height: 220px;
+      }
+} 
+.card{
+    align-items: center;
+    &.up{
+        position: relative;
+        background-color: white;
+        width:150px;
+        height:220px;
+    }
+}
+#player1-div{
+    span{
+    display: flex;
+    }   
+}
+#player3-div{
+    span{
+    display: flex;
+    }
+}
+.player-deck{
+    *{
+        margin: 20px;
+    }
+}
+button{
+    width:200px;
+    height: 200px;
+    font-size: 3em;
+    border-radius: 50%;
+}
+.card.selected{
+    border-style: solid;
+    border-width: 3px;
+}
+span.player-title{
+    display:flex;
+}

@@ -62,15 +62,14 @@
   -ms-grid-column: 3;
   grid-column: 3;
   -ms-grid-row: 3;
-  -ms-grid-row-span: 1;
-  grid-row: 3/span 1;
+  grid-row: 3;
 }
 
 .grid-item:nth-child(8) {
   -ms-grid-column: 3;
   grid-column: 3;
-  -ms-grid-row: 5;
-  grid-row: 5;
+  -ms-grid-row: 3;
+  grid-row: 3;
 }
 
 body {
@@ -136,4 +135,4 @@ span.player-title {
   display: -ms-flexbox;
   display: flex;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=main-sheet.css.map */
