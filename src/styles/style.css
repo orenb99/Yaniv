@@ -123,4 +123,10 @@ span.title > * {
   border-style: solid;
   border-width: 3px;
 }
+
+span.player-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 /*# sourceMappingURL=style.css.map */
