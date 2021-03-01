@@ -2,7 +2,6 @@
 function main() {
 
     //elements
-const title=document.getElementById("title");
 const counterElement= document.getElementById("turn-counter");
 const player1Span=document.getElementById("player1-div").getElementsByTagName("span")[1];
 const player2Span=document.getElementById("player2-div").getElementsByTagName("span")[1];

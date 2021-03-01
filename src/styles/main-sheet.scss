@@ -1,5 +1,6 @@
 @import "./grid";
-
+$cardHeight:130px;
+$cardWidth:80px;
 
 body{
     background-color: green;
@@ -13,18 +14,20 @@ span.title{
     }
 }
 .down {
+    margin: 0;
     img {
-        width: 100px;
-        height: 160px;
+        width: $cardWidth;
+        height: $cardHeight;
+        margin: 0;
       }
 } 
 .card{
-    align-items: center;
     &.up{
+        font-size: 0.8em;
         position: relative;
         background-color: white;
-        width:100px;
-        height:160px;
+        width:$cardWidth;
+        height:$cardHeight;
     }
 }
 #player1-div{
@@ -43,8 +46,8 @@ span.title{
     }
 }
 button{
-    width:200px;
-    height: 200px;
+    width:150;
+    height: 150px;
     font-size: 3em;
     border-radius: 50%;
 }
