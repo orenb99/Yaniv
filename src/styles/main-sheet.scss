@@ -1,9 +1,8 @@
 @import "./grid";
 $cardHeight:130px;
 $cardWidth:80px;
-
 body{
-    background-color: green;
+    background-color: rgb(1, 94, 1);
 }
 .title{
     text-align: center;
@@ -23,7 +22,7 @@ span.title{
 } 
 .card{
     &.up{
-        font-size: 0.8em;
+        font-size: 1em;
         position: relative;
         background-color: white;
         width:$cardWidth;

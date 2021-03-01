@@ -3,7 +3,7 @@
     grid-template-columns: 180px 180px 180px 180px 180px 180px  ;
     grid-template-rows: 160px 160px 160px 160px 160px 160px 160px; 
     justify-content: center;
-    grid-gap: 20px;
+    //grid-gap: 70px;
 }
 .grid-item {
     border-style: solid;
@@ -23,7 +23,7 @@
     &:nth-child(3){
     //player3
         grid-column: 2/span 4 ;
-        grid-row: 7;
+        grid-row: 6;
     }   
     &:nth-child(4){
     //player4
@@ -37,13 +37,13 @@
     }
     &:nth-child(6){
     //pile
-        grid-column: 5;
+        grid-column: 4;
         grid-row: 3;
     }
     &:nth-child(7){
     //yaniv button
-        grid-column: 4;
-        grid-row: 3;
+        grid-column: 3/span 1;
+        grid-row: 4;
     }
     &:nth-child(8){
     //turns
