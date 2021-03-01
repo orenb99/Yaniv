@@ -59,7 +59,6 @@ tableSpan.addEventListener("click",()=>{
     moveCard(gameObj.table.deck,gameObj.pile.deck,gameObj.table.deck.cards[0]);
     counterElement.innerText=changeTurn(parseInt(counterElement.innerText));
     updateByTurn(gameObj,counterElement);
-    gameObj.playerArray[parseInt(counterElement.innerText)-1].deck.changeable();
 })
     //calls
 startGame(gameObj,counterElement);

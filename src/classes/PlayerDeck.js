@@ -20,6 +20,8 @@ class PlayerDeck extends Deck{
         if(!this.selectedCards.includes(card)){
             this.selectedCards.push(card);
             if(!this.checkSerial()&&this.checkSameSuit(card)){
+                if(card.isJoker)
+                   return; 
                 this.selectedCards=[];
                 this.selectedCards.push(card);
             }
@@ -69,7 +71,7 @@ class PlayerDeck extends Deck{
         selectedValues=sortValues(selectedValues);
         let serialArray=[];
         for(let i=0;i<selectedValues.length;i++){
-            if(selectedValues[i]-1===selectedValues[i-1]||serialArray.length===0){
+            if(selectedValues[i]-1===selectedValues[i-1]||serialArray.length===0||selectedValues[i-1]===0){
                 serialArray.push(selectedValues[i]);
             }
             else{
@@ -78,7 +80,4 @@ class PlayerDeck extends Deck{
         }
         return true;
     }
-    changeable(){
-        console.log(this.selectedCards);
-    }    
 }
