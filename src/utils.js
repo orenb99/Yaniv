@@ -83,12 +83,13 @@ function checkSelected(gameObj,playerIndex) {
         }
     }
 
+function closeNumbers(card,arr) {
+    
+}
+
+
 function startGame(gameObj,counterElement) {
     gameObj.appendAll();
-
-
-
-
     for(let i=0;i<20;i++){
          setTimeout(()=>{
             moveCard(gameObj.table.deck, gameObj.playerArray[Math.floor((i)%4)].deck, gameObj.table.deck.cards[0])
@@ -97,7 +98,6 @@ function startGame(gameObj,counterElement) {
         },i*70);
     }
     addSelectListener(gameObj);
-
     
 }
 
