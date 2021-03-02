@@ -86,7 +86,7 @@ for(let i=0;i<2;i++){
 }
 
 yanivButton.addEventListener("click",()=>{
-    stopGame(gameObj);
+    stopGame(gameObj,currentPlayer);
     
 })
 

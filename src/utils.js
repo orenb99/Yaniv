@@ -105,19 +105,35 @@ function startGame(gameObj,counterElement) {
     addSelectListener(gameObj);
 }
 
-function stopGame(gameObj) {
+function stopGame(gameObj,currentPlayer) {
     gameObj.playerArray.forEach((value) => {
         value.deck.flipAll("up");
     });
     
-    for(let item of gameObj.playerArray){
+    for(let player of gameObj.playerArray){
         //not working for some reason
-        item.element.removeEventListener("click",(event)=>select(event,item,gameObj))
+        player.element.removeEventListener("click",(event)=>select(event,player,gameObj))
         //
-        item.score.innerText=item.deck.checkValues(item.deck.cards)
+        player.score.innerText=player.deck.checkValues(player.deck.cards)
         .reduce((acc,current)=>acc+current);
     }
-    
+    let min=Number(gameObj.playerArray[0].score.innerText);
+    let minPlayer;
+    for(let player of gameObj.playerArray){
+        if(min>Number(player.score.innerText)){
+            min=Number(player.score.innerText);
+            minPlayer=player;
+        }
+    }
+    if(currentPlayer==minPlayer){
+        alert("You Won")
+    }
+    else{
+        const assafButton=document.createElement("Button");
+        minPlayer.append(assafButton);
+        assafButton.innerHTML="Assaf";
+
+    }
     gameObj.appendAll();
 }
 
